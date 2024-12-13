@@ -1,95 +1,41 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      <div className={styles.pageLayout}>
+        <header className={styles.pageHeader}>
+          {/* <Link href="/">
+          <AcmeLogo />
+        </Link> */}
+        </header>
+        <div className={styles.body}>
+          <h1 className={styles.pageTitle}>
+            Talk to a<br /> product expert
+          </h1>
+          <h3 className={styles.pageSubTitle}>What to expect:</h3>
+          <ul className={styles.pageBulletList}>
+            <li className={styles.pageBulletPoint}>
+              Zero-pressure, technical demo of the Acme platform
+            </li>
+            <li className={styles.pageBulletPoint}>
+              Walkthrough of a relevant use case
+            </li>
+            <li className={styles.pageBulletPoint}>
+              Overview of products and plans
+            </li>
+            <li className={styles.pageBulletPoint}>
+              Insight into API and integration capabilities
+            </li>
+          </ul>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className={styles.form}>{/* <DemoForm /> */}</div>
+        <div className={styles.illustration}>
+          {/* <DemoPageIllustration /> */}
+        </div>
+        <div className={styles.copyright}>{/* <p>© acme corp</p> */}</div>
+      </div>
     </div>
   );
 }

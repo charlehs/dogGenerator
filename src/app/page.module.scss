@@ -1,0 +1,33 @@
+.page {
+  padding: var(--pageMargin);
+}
+
+.pageLayout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  // grid-template-rows:
+}
+
+.article {
+  a {
+    font-weight: 700;
+    &[target="_blank"] {
+      sup {
+        font-size: 50%;
+      }
+    }
+  }
+}
+
+.pageTitle {
+  font-size: 38px;
+  max-width: 10em;
+  line-height: 1;
+  margin: 0;
+  + * {
+    margin-top: var(--gap);
+  }
+  @media (min-width: 768px) {
+    font-size: 56px;
+  }
+}
