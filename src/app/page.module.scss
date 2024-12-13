@@ -1,11 +1,20 @@
 .page {
   padding: var(--pageMargin);
+  min-height: 100vh;
 }
 
 .pageLayout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  // grid-template-rows:
+
+  //mobile
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    // large
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 100px;
+    align-items: start;
+  }
 }
 
 .article {
@@ -21,7 +30,7 @@
 
 .pageTitle {
   font-size: 38px;
-  max-width: 10em;
+  // max-width: 10em;
   line-height: 1;
   margin: 0;
   + * {
@@ -30,4 +39,9 @@
   @media (min-width: 768px) {
     font-size: 56px;
   }
+}
+
+.body {
+  grid-column: 1;
+  // text-align: right;
 }

@@ -1,0 +1,16 @@
+.button {
+  appearance: none;
+  font: inherit;
+  background-color: var(--black);
+  color: var(--white);
+  border: 1px solid var(--purple200);
+  border-radius: 6px;
+  padding: 1em;
+  font-weight: 700;
+  &:hover {
+    filter: brightness(1.05);
+  }
+  &:active {
+    filter: brightness(0.95);
+  }
+}

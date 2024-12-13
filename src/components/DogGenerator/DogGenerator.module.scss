@@ -1,0 +1,22 @@
+.background {
+  background-color: var(--foreground);
+  min-height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: var(--pageMargin);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.image {
+  min-height: 200px;
+  background-color: red;
+}
+
+.generateButton {
+  background-color: red;
+}
