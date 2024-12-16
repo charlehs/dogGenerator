@@ -1,8 +1,12 @@
+"use client";
+import Checkbox from "@/components/Checkbox/Checkbox";
 import DogGenerator from "@/components/DogGenerator/DogGenerator";
 import Image from "next/image";
+import { useState } from "react";
 import styles from "./page.module.scss";
 
 export default function Home() {
+  const [isChecked, setIsChecked] = useState<boolean>(false);
   return (
     <div className={styles.page}>
       <div className={styles.pageLayout}>
@@ -27,6 +31,12 @@ export default function Home() {
               Insight into API and integration capabilities
             </li>
           </ul>
+          <Checkbox
+            id="checkbox1"
+            label={"agree to terms"}
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+          />
         </div>
         <div className={styles.dogGenerator}>
           <DogGenerator />
