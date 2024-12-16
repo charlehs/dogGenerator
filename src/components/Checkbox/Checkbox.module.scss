@@ -1,0 +1,12 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  input {
+    accent-color: var(--light);
+    cursor: pointer;
+  }
+  label {
+    cursor: pointer;
+  }
+}
