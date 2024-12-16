@@ -9,7 +9,13 @@ interface CheckboxProps extends React.ComponentProps<"input"> {
 const Checkbox: React.FC<CheckboxProps> = ({ label, id, ...rest }) => {
   return (
     <div className={styles.checkbox}>
-      <input id={id} type="checkbox" {...rest} />
+      <input
+        id={id}
+        type="checkbox"
+        aria-checked={rest.checked}
+        aria-label={label}
+        {...rest}
+      />
       <label htmlFor={id}>{label}</label>
     </div>
   );

@@ -2,10 +2,12 @@
 import { getRequestTo } from "@/utils/getRequestTo";
 import React, { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
+import Checkbox from "../Checkbox/Checkbox";
 import styles from "./DogGenerator.module.scss";
 const DogGenerator = () => {
-  const [imageUrl, setImageUrl] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const getDogImage = async () => {
     setIsLoading(true);
@@ -23,6 +25,15 @@ const DogGenerator = () => {
   return (
     <div className={styles.background}>
       <div className={styles.layout}>
+        <div className={styles.options}>
+          {/* start adding selection fields for what breed the user wants to select */}
+          <Checkbox
+            id="checkbox1"
+            label={"agree to terms"}
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+          />
+        </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
             <p>Loading...</p>
