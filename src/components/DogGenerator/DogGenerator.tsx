@@ -3,6 +3,7 @@ import { getRequestTo } from "@/utils/getRequestTo";
 import React, { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
+import Dropdown from "../Dropdown/Dropdown";
 import styles from "./DogGenerator.module.scss";
 const DogGenerator = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -27,12 +28,7 @@ const DogGenerator = () => {
       <div className={styles.layout}>
         <div className={styles.options}>
           {/* start adding selection fields for what breed the user wants to select */}
-          <Checkbox
-            id="checkbox1"
-            label={"agree to terms"}
-            checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
-          />
+          <Dropdown />
         </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
