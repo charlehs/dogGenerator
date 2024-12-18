@@ -9,7 +9,7 @@ const DogGenerator = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isChecked, setIsChecked] = useState<boolean>(false);
-
+  const [selectedBreeds, setSelectedBreeds] = useState<string[]>([]);
   const getDogImage = async () => {
     setIsLoading(true);
     const data = await getRequestTo("https://dog.ceo/api/breeds/image/random");
@@ -19,16 +19,17 @@ const DogGenerator = () => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    console.log(imageUrl, "image");
-  }, [imageUrl]);
+  const handleSelectedBreeds = (selected: string[]) => {
+    console.log("Selected Breeds:", selected);
+    setSelectedBreeds(selected);
+  };
 
   return (
     <div className={styles.background}>
       <div className={styles.layout}>
         <div className={styles.options}>
           {/* start adding selection fields for what breed the user wants to select */}
-          <Dropdown />
+          <Dropdown onSelectionChange={handleSelectedBreeds} />
         </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
