@@ -5,17 +5,23 @@ import { Button } from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
 import styles from "./Dropdown.module.scss";
 
-const Dropdown = () => {
+interface DropdownProps {
+  onSelectionChange: (selected: string[]) => void;
+}
+
+const Dropdown = ({ onSelectionChange }: DropdownProps) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
   const handleCheckboxChange = (id: string) => {
     setSelectedCheckboxes((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
     );
+    // Pass the selected values up to the parent component
+    onSelectionChange(selectedCheckboxes);
   };
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [breeds, setBreeds] = useState<string[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
-  const options = ["Terrier", "Jack Russell", "Labrodoor"];
+
   const getBreeds = async () => {
     setIsLoading(true);
     const data = await getRequestTo("https://dog.ceo/api/breeds/list/all");
@@ -41,7 +47,6 @@ const Dropdown = () => {
             <>
               {breeds.length > 0 ? (
                 <>
-                  {" "}
                   {breeds.map((breed) => (
                     <Checkbox
                       id={breed}
