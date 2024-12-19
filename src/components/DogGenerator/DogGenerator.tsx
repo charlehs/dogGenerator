@@ -8,7 +8,7 @@ import styles from "./DogGenerator.module.scss";
 const DogGenerator = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [viewedImages, setViewedImages] = useState<string[]>([""]);
   const [selectedBreeds, setSelectedBreeds] = useState<string[]>([]);
   const getDogImage = async () => {
     setIsLoading(true);
@@ -16,12 +16,26 @@ const DogGenerator = () => {
     const dogImage = data.message;
     // console.log(data, "data");
     setImageUrl(dogImage);
+    setViewedImages((prevViewedImages) => [...prevViewedImages, dogImage]);
+    console.log(viewedImages[viewedImages.length - 1], "viewedImages");
     setIsLoading(false);
   };
 
   const handleSelectedBreeds = (selected: string[]) => {
     console.log("Selected Breeds:", selected);
     setSelectedBreeds(selected);
+  };
+
+  const updateImage = () => {
+    setViewedImages((prevViewedImages) => {
+      if (prevViewedImages.length > 1) {
+        const newImages = [...prevViewedImages];
+        newImages.pop();
+        setImageUrl(newImages[newImages.length - 1]);
+        return newImages;
+      }
+      return prevViewedImages;
+    });
   };
 
   return (
@@ -46,9 +60,16 @@ const DogGenerator = () => {
             </>
           )}
         </div>
-        <Button onClick={getDogImage} className={styles.generateButton}>
-          Generate
-        </Button>
+        <div className={styles.buttons}>
+          <Button onClick={getDogImage} className={styles.generateButton}>
+            Generate
+          </Button>
+          {viewedImages.length > 2 && (
+            <Button onClick={updateImage} className={styles.generateButton}>
+              Prev
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
