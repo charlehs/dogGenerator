@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
 import Dropdown from "../Dropdown/Dropdown";
+import Loader from "../Loader/Loader";
 import styles from "./DogGenerator.module.scss";
 const DogGenerator = () => {
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -47,7 +48,7 @@ const DogGenerator = () => {
         </div>
         <div className={styles.imageContainer}>
           {isLoading ? (
-            <p>Loading...</p>
+            <Loader />
           ) : (
             <>
               {imageUrl && (

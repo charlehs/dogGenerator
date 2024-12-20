@@ -3,6 +3,7 @@ import { getRequestTo } from "@/utils/getRequestTo";
 import React, { useState } from "react";
 import { Button } from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
+import Loader from "../Loader/Loader";
 import styles from "./Dropdown.module.scss";
 
 interface DropdownProps {
@@ -42,13 +43,14 @@ const Dropdown = ({ onSelectionChange }: DropdownProps) => {
       {showDropdown && (
         <div className={styles.dropdownbox}>
           {isLoading ? (
-            <p>loading</p>
+            <Loader />
           ) : (
             <>
               {breeds.length > 0 ? (
                 <>
                   {breeds.map((breed) => (
                     <Checkbox
+                      key={breed}
                       id={breed}
                       label={breed}
                       checked={selectedCheckboxes.includes(breed)}
