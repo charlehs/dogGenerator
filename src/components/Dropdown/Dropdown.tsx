@@ -1,6 +1,6 @@
 "use client";
 import { getRequestTo } from "@/utils/getRequestTo";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
 import Loader from "../Loader/Loader";
@@ -23,6 +23,7 @@ const Dropdown = ({ onSelectionChange }: DropdownProps) => {
     });
   };
 
+  const breedDropdown = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [breeds, setBreeds] = useState<string[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -33,6 +34,12 @@ const Dropdown = ({ onSelectionChange }: DropdownProps) => {
     setBreeds(Object.keys(data.message));
     setIsLoading(false);
   };
+  const closeOpenMenu = (e: MouseEvent) => {
+    if (showDropdown && !breedDropdown.current?.contains(e.target as Node)) {
+      setShowDropdown(false);
+    }
+  };
+  document.addEventListener("mousedown", closeOpenMenu);
 
   return (
     <div className={styles.dropdown}>
@@ -45,7 +52,7 @@ const Dropdown = ({ onSelectionChange }: DropdownProps) => {
         Select Breed
       </Button>
       {showDropdown && (
-        <div className={styles.dropdownbox}>
+        <div ref={breedDropdown} className={styles.dropdownbox}>
           {isLoading ? (
             <Loader />
           ) : (
