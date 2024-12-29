@@ -1,6 +1,7 @@
 "use client";
 import { getRequestTo } from "@/utils/getRequestTo";
 import React, { useState, useRef } from "react";
+import Badge from "../Badge/Badge";
 import { Button } from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
 import Loader from "../Loader/Loader";
@@ -12,7 +13,7 @@ interface DropdownProps {
 
 const Dropdown = ({ onSelectionChange }: DropdownProps) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
-
+  console.log(selectedCheckboxes, "selected");
   const handleCheckboxChange = (id: string) => {
     setSelectedCheckboxes((prev) => {
       const updatedCheckboxes = prev.includes(id)
@@ -49,7 +50,22 @@ const Dropdown = ({ onSelectionChange }: DropdownProps) => {
           getBreeds(), setShowDropdown(!showDropdown);
         }}
       >
-        Select Breed
+        {selectedCheckboxes.length > 0 ? (
+          <>
+            Select Breeds{" "}
+            <div className={styles.badgeBox}>
+              {selectedCheckboxes.length > 2 ? (
+                <Badge>{selectedCheckboxes.length} selected</Badge>
+              ) : (
+                selectedCheckboxes.map((value) => (
+                  <Badge key={value}>{value}</Badge>
+                ))
+              )}
+            </div>
+          </>
+        ) : (
+          "Select Breeds"
+        )}
       </Button>
       {showDropdown && (
         <div ref={breedDropdown} className={styles.dropdownbox}>

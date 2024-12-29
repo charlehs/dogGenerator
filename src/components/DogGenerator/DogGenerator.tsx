@@ -1,6 +1,7 @@
 "use client";
 import { getRequestTo } from "@/utils/getRequestTo";
 import React, { useEffect, useState } from "react";
+import Badge from "../Badge/Badge";
 import { Button } from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
 import Dropdown from "../Dropdown/Dropdown";
