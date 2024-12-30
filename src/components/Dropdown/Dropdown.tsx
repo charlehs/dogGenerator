@@ -1,6 +1,6 @@
 "use client";
 import { getRequestTo } from "@/utils/getRequestTo";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Badge from "../Badge/Badge";
 import { Button } from "../Button/Button";
 import Checkbox from "../Checkbox/Checkbox";
@@ -14,15 +14,16 @@ interface DropdownProps {
 const Dropdown = ({ onSelectionChange }: DropdownProps) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState<string[]>([]);
   console.log(selectedCheckboxes, "selected");
+
   const handleCheckboxChange = (id: string) => {
-    setSelectedCheckboxes((prev) => {
-      const updatedCheckboxes = prev.includes(id)
-        ? prev.filter((item) => item !== id)
-        : [...prev, id];
-      onSelectionChange(updatedCheckboxes);
-      return updatedCheckboxes;
-    });
+    setSelectedCheckboxes((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
+
+  useEffect(() => {
+    onSelectionChange(selectedCheckboxes);
+  }, [selectedCheckboxes, onSelectionChange]);
 
   const breedDropdown = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
